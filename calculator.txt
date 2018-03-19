@@ -1,0 +1,483 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.lang.Math.*;
+class calc implements ActionListener
+{
+	JFrame fr;
+	JTextArea ta1;
+	JMenuBar bar;
+	JMenu m1,m2,m3;
+	JMenuItem mi1,mi2,mi3,mi4,mi5,mi6,mi7,mi8,mi9,mi10;
+	JPanel p1,p2,p3;
+	JButton b1[]=new JButton[9];
+	JButton b2[]=new JButton[11];
+	int num1,num2,res,sum1,sum2;
+	String op="",dop;
+	calc(String str)
+	{}
+	
+	calc()
+	{
+		fr=new JFrame();
+		fr.setSize(450,417);
+		fr.setLayout(null);
+		fr.setResizable(false);
+		
+		bar=new JMenuBar();
+		fr.setJMenuBar(bar);
+		
+		m1=new JMenu("View");
+		bar.add(m1);
+		
+		mi1=new JMenuItem("Standard");
+		m1.add(mi1);
+		
+		mi2=new JMenuItem("Scientific");
+		m1.add(mi2);
+		
+		m2=new JMenu("Edit");
+		bar.add(m2);
+		
+		m3=new JMenu("Help");
+		bar.add(m3);
+		
+
+		p1=new JPanel();
+		p1.setLayout(new GridLayout());
+		p1.setBounds(0,0,fr.getHeight(),60);
+		fr.add(p1);
+		
+		ta1=new JTextArea();
+		ta1.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		p1.add(ta1);
+	
+		p2=new JPanel();
+		p2.setBounds(2,65,220,290);
+		p2.setLayout(new GridLayout(3,3));
+		fr.add(p2);
+		for(int i=0;i<9;i++)
+		{
+			b1[i]=new JButton(i+1+ "" );
+			b1[i].setFont(new Font("TimesNewRoman",Font.PLAIN,20));
+			p2.add(b1[i]);
+		}
+		
+				
+		p3=new JPanel();
+		p3.setBounds(225,65,220,290);
+		p3.setLayout(new GridLayout(4,3));
+		fr.add(p3);
+		
+		Font f=new Font("TimesNewRoman",Font.PLAIN,20);
+			b2[0]=new JButton("+");
+			b2[0].setFont(f);
+			p3.add(b2[0]);
+			b2[1]=new JButton("-");
+			b2[1].setFont(f);
+			p3.add(b2[1]);
+			b2[2]=new JButton("%");
+			b2[2].setFont(f);
+			p3.add(b2[2]);
+			b2[3]=new JButton("*");
+			b2[3].setFont(f);
+			p3.add(b2[3]);
+			b2[4]=new JButton("/");
+			b2[4].setFont(f);
+			p3.add(b2[4]);
+			b2[5]=new JButton("1/x");
+			b2[5].setFont(f);
+			p3.add(b2[5]);
+			b2[6]=new JButton("0");
+			b2[6].setFont(f);
+			p3.add(b2[6]);
+			b2[7]=new JButton(".");
+			b2[7].setFont(f);
+			p3.add(b2[7]);
+			b2[8]=new JButton("=");
+			b2[8].setPreferredSize(new Dimension(50,120));
+			b2[8].setFont(f);
+			p3.add(b2[8]);
+			b2[9]=new JButton("<-");
+			b2[9].setFont(f);
+			p3.add(b2[9]);
+			b2[10]=new JButton("clc");
+			b2[10].setFont(f);
+			p3.add(b2[10]);
+			
+			
+			
+			
+		b1[0].addActionListener(this);	
+		b1[1].addActionListener(this);	
+		b1[2].addActionListener(this);	
+		b1[3].addActionListener(this);	
+		b1[4].addActionListener(this);	
+		b1[5].addActionListener(this);	
+		b1[6].addActionListener(this);	
+		b1[7].addActionListener(this);	
+		b1[8].addActionListener(this);	
+		b2[0].addActionListener(this);	
+		b2[1].addActionListener(this);	
+		b2[2].addActionListener(this);	
+		b2[3].addActionListener(this);	
+		b2[4].addActionListener(this);	
+		b2[5].addActionListener(this);	
+		b2[6].addActionListener(this);	
+		b2[7].addActionListener(this);	
+		b2[8].addActionListener(this);	
+		b2[9].addActionListener(this);	
+		b2[10].addActionListener(this);	
+		
+		mi1.addActionListener(this);
+		mi2.addActionListener(this);
+		
+		
+				
+		
+		
+		fr.setVisible(true);
+	}	
+	public static void main(String s[])
+	{
+		new calc();
+		
+	}
+	
+	
+	public void actionPerformed(ActionEvent e)
+	{
+		
+			if(e.getActionCommand().equals("+") || e.getActionCommand().equals("-") || e.getActionCommand().equals("*") || e.getActionCommand().equals("/")) 
+			{
+				 op=e.getActionCommand();
+				dop=e.getActionCommand();	
+					ta1.setText(ta1.getText()+ " " + " " +op);
+				
+				
+			}
+			
+			else
+			{
+				if(e.getActionCommand().equals("0") || e.getSource()==b1[0] || e.getSource()==b1[1] || e.getSource()==b1[2] || e.getSource()==b1[3] || e.getSource()==b1[4] || e.getSource()==b1[5] || e.getSource()==b1[6] || e.getSource()==b1[7] || e.getSource()==b1[8])
+				{
+					String s1=e.getActionCommand();
+						if(op.equals("+") || op.equals("-") || op.equals("*") || op.equals("/") ) 
+						{
+						num2=Integer.parseInt(s1);
+						sum2=(sum2*10)+num2;
+						ta1.setText(sum1+ " " + " " +dop + " " +sum2);
+						
+						}
+						
+						
+						
+						else{
+						num1=Integer.parseInt(s1);
+						sum1=(sum1*10)+num1;
+						ta1.setText("" +sum1);
+						
+						}
+						
+						
+						
+							
+				}	 
+			}
+			
+			
+			
+			if(e.getActionCommand().equals("%"))
+			{
+				float f=(float)(sum1);
+				ta1.setText(" " +sum1 +  "\n " +(float)(f/100));
+			}	
+			
+			if(e.getActionCommand().equals("1/x"))
+			{
+				float f=(float)(sum1);
+				ta1.setText(" " +sum1 +  "\n " +(float)(1/f));
+			}
+			
+					if(e.getActionCommand().equals("="))
+						{
+							switch (dop)
+							{
+								case "+":
+								    res=sum1+sum2;
+									break;
+								case "-":
+								    res=sum1-sum2;
+									break;
+								case "*":
+								    res=sum1*sum2;
+									break;
+								case "/":
+								    res=sum1/sum2;
+									break;
+							}
+							
+							ta1.setText(" " +res);
+							sum1=res;
+							sum2=0;
+							num1=0;
+							num2=0;
+							
+						}
+			
+				if(e.getActionCommand().equals("clc"))
+				{
+					ta1.setText("");
+					op="";sum1=0;num1=0;sum2=0;num2=0;res=0;
+				}
+
+					
+				
+				if(e.getSource()==mi2)
+				{
+					fr.dispose();
+					
+					new scientific();
+					fr.setVisible(false);
+				}	
+	}	
+}	
+
+ 
+ 
+ 
+class scientific extends calc implements ActionListener
+{
+	JFrame fr2;
+	JTextArea ta2;
+	JMenuBar bar;
+	JMenu m1,m2,m3;
+	JMenuItem mi1,mi2,mi3,mi4,mi5,mi6,mi7,mi8,mi9,mi10;
+	JPanel p1,p2,p3;
+	JButton b1[]=new JButton[9];
+	JButton b2[]=new JButton[12];
+	int num1,num2,sum1,sum2;
+	scientific()
+	{super("");
+	System.out.println(Math.sin(Math.toRadians(30)));
+		fr2=new JFrame();
+		fr2.setSize(450,417);
+		fr2.setLayout(null);
+		
+		bar=new JMenuBar();
+		fr2.setJMenuBar(bar);
+		
+		m1=new JMenu("View");
+		bar.add(m1);
+		
+		mi1=new JMenuItem("Standard");
+		m1.add(mi1);
+		
+		mi2=new JMenuItem("Scientific");
+		m1.add(mi2);
+		
+		m2=new JMenu("Edit");
+		bar.add(m2);
+		
+		m3=new JMenu("Help");
+		bar.add(m3);
+		
+
+		p1=new JPanel();
+		p1.setLayout(new GridLayout());
+		p1.setBounds(0,0,fr2.getWidth(),60);
+		fr2.add(p1);
+		
+		ta2=new JTextArea();
+		p1.add(ta2);
+	
+		p2=new JPanel();
+		p2.setBounds(2,65,220,290);
+		p2.setLayout(new GridLayout(3,3));
+		fr2.add(p2);
+		for(int i=0;i<9;i++)
+		{
+			b1[i]=new JButton(i+1+ "" );
+			b1[i].setFont(new Font("TimesNewRoman",Font.PLAIN,20));
+			p2.add(b1[i]);
+		}
+		
+		
+		p3=new JPanel();
+		p3.setBounds(225,65,200,290);
+		p3.setLayout(new GridLayout(4,3));
+		fr2.add(p3);
+		
+		Font f=new Font("TimesNewRoman",Font.PLAIN,16);
+			b2[0]=new JButton("sin");
+			b2[0].setFont(f);
+			p3.add(b2[0]);
+			b2[1]=new JButton("cos");
+			b2[1].setFont(f);
+			p3.add(b2[1]);
+			b2[2]=new JButton("tan");
+			b2[2].setFont(f);
+			p3.add(b2[2]);
+			b2[3]=new JButton("x^2");
+			b2[3].setFont(f);
+			p3.add(b2[3]);
+			Font f1=new Font("TimesNewRoman",Font.PLAIN,15);
+			b2[4]=new JButton("sqrt");
+			b2[4].setFont(f1);
+			p3.add(b2[4]);
+			b2[5]=new JButton("exp");
+			b2[5].setFont(f1);
+			p3.add(b2[5]);
+			b2[6]=new JButton("log");
+			b2[6].setFont(f);
+			p3.add(b2[6]);
+			b2[7]=new JButton("ln");
+			b2[7].setFont(f);
+			p3.add(b2[7]);
+			b2[8]=new JButton("1/x");
+			b2[8].setFont(f);
+			p3.add(b2[8]);
+			b2[9]=new JButton("0");
+			b2[9].setFont(f);
+			p3.add(b2[9]);
+			b2[10]=new JButton("clc");
+			b2[10].setFont(f);
+			p3.add(b2[10]);
+			b2[11]=new JButton("=");
+			b2[11].setFont(f);
+			p3.add(b2[11]);
+		b1[0].addActionListener(this);	
+		b1[1].addActionListener(this);	
+		b1[2].addActionListener(this);	
+		b1[3].addActionListener(this);	
+		b1[4].addActionListener(this);	
+		b1[5].addActionListener(this);	
+		b1[6].addActionListener(this);	
+		b1[7].addActionListener(this);	
+		b1[8].addActionListener(this);	
+		b2[0].addActionListener(this);	
+		b2[1].addActionListener(this);	
+		b2[2].addActionListener(this);	
+		b2[3].addActionListener(this);	
+		b2[4].addActionListener(this);	
+		b2[5].addActionListener(this);	
+		b2[6].addActionListener(this);	
+		b2[7].addActionListener(this);	
+		b2[8].addActionListener(this);	
+		b2[9].addActionListener(this);	
+		b2[10].addActionListener(this);	
+		b2[11].addActionListener(this);	
+		
+		mi1.addActionListener(this);
+		
+		fr2.setVisible(true);
+	}
+	
+	
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getActionCommand().equals("0") || e.getSource()==b1[0] || e.getSource()==b1[1] || e.getSource()==b1[2] || e.getSource()==b1[3] || e.getSource()==b1[4] || e.getSource()==b1[5] || e.getSource()==b1[6] || e.getSource()==b1[7] || e.getSource()==b1[8])
+							{
+							String s1=e.getActionCommand();
+							num1=Integer.parseInt(s1);
+							sum1=(sum1*10)+num1;
+							ta2.setText(" " +sum1);
+					
+							}
+			if(e.getActionCommand().equals("sin"))
+			{	
+					ta2.setText("sin( " +sum1 + ")");
+					
+					double a=(double)(sum1);
+					double b=Math.toRadians(a);
+					ta2.setText(ta2.getText()+ " " + "\n " +(Math.sin(b)));
+					sum1=0;
+
+			}
+			
+									
+				if(e.getActionCommand().equals("cos"))
+			{
+				ta2.setText("cos( " +sum1 + ")");
+					
+					double a=(double)(sum1);
+					double b=Math.toDegrees(a);
+					ta2.setText(ta2.getText()+ " " + "\n " +(Math.cos(b)));
+					sum1=0;
+
+			}
+
+			if(e.getActionCommand().equals("tan"))
+			{
+				ta2.setText("tan( " +sum1 + ")");
+					
+					double a=(double)(sum1);
+					double b=Math.toDegrees(a);
+					ta2.setText(ta2.getText()+ " " + "\n " +(Math.tan(b)));
+					sum1=0;
+
+			}	
+			
+			if(e.getActionCommand().equals("1/x"))
+			{
+				
+				float f=(float)(sum1);
+				ta2.setText("1  /  " +f + "\n " +(1/f));
+				sum1=0;
+			}
+
+			if(e.getActionCommand().equals("sqrt"))
+			{
+				
+				double d=(double)(sum1);
+				ta2.setText(" " +d + "\n " +(float)(Math.sqrt(d)));
+				sum1=0;
+			}	
+			
+			if(e.getActionCommand().equals("log"))
+			{
+				
+				double d=(double)(sum1);
+				ta2.setText(" " +d + "\n " +(float)(Math.log10(d)));
+				sum1=0;
+			}	
+			
+			if(e.getActionCommand().equals("ln"))
+			{
+				
+				double d=(double)(sum1);
+				ta2.setText(" " +d + "\n " +(float)(Math.log(d)));
+				sum1=0;
+			}	
+
+			
+			if(e.getActionCommand().equals("exp"))
+			{
+				
+				double d=(double)(sum1);
+				ta2.setText(" " +d + "\n " +(float)(Math.exp(d)));
+				sum1=0;
+			}
+			
+			if(e.getActionCommand().equals("x^2"))
+			{
+				double d=(double)(sum1);
+				ta2.setText("sqr ( " +d + " )" + "\n\n " +(float)(Math.pow(d,2)));	
+				sum1=0;
+			}
+			
+		if(e.getSource()==mi1)
+		{
+			fr2.dispose();
+			new calc();
+			
+		}	
+		
+		if(e.getActionCommand().equals("clc"))
+				{
+					ta2.setText("");
+					sum1=0;num1=0;sum2=0;num2=0;
+				}
+	}
+}
+	
